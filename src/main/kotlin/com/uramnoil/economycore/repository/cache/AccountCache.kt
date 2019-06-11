@@ -3,10 +3,14 @@ package com.uramnoil.economycore.repository.cache
 import com.uramnoil.economycore.entity.Account
 
 class AccountCache {
-    val cache = arrayListOf<Account>()
+    private val cache = arrayListOf<Account>()
+    val all: List<Account>
+        get() = cache
+
     fun cache(account: Account) {
         cache[account.id] = account
     }
+
     fun isCached(id: Int): Boolean = cache.getOrNull(id) is Account
 
     fun isCached(name: String): Boolean = cache.filter{ account -> account.name == name }.count() == 1
@@ -21,4 +25,6 @@ class AccountCache {
         }
         throw NotCachedException()
     }
+
+    fun delete(account: Account) = cache.remove(account)
 }
