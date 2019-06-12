@@ -3,7 +3,7 @@ package com.uramnoil.economycore.repository.dao
 import com.uramnoil.economycore.entity.Account
 import com.uramnoil.economycore.entity.AccountFactory
 
-class AccountMockDao(db: Any): IAccountDao {
+class AccountMockDao(): IAccountDao {
     private val list = arrayListOf<Account>()
 
     private var id = 0
@@ -21,7 +21,12 @@ class AccountMockDao(db: Any): IAccountDao {
 
     override fun delete(account: Account): Boolean = list.remove(account)
 
-    override fun new(name: String, money: Int): Account = AccountFactory.createAccount(name, id++, money)
+    override fun create(name: String, money: Int): Account {
+        if(select(name) == null)
+            return AccountFactory.createAccount(name, id++, money)
+        else
+            throw AccountException()
+    }
 
     override fun save() {}
 }

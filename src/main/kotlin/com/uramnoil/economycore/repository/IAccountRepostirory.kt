@@ -7,9 +7,7 @@ import com.uramnoil.economycore.repository.dao.IAccountDao
 interface IAccountRepostirory {
     val dao: IAccountDao
 
-    fun new(name: String, money: Int) {
-        dao.new(name, money)
-    }
+    fun new(name: String, money: Int = 0): Account
 
     fun store(account: Account)
     fun get(id: Int): Account?

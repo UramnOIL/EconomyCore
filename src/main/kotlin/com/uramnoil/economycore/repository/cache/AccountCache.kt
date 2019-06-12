@@ -8,12 +8,12 @@ class AccountCache {
         get() = cache
 
     fun cache(account: Account) {
-        cache[account.id] = account
+        cache.add(account.id, account)
     }
 
     fun hasCached(id: Int): Boolean = cache.getOrNull(id) is Account
 
-    fun hasCached(name: String): Boolean = cache.filter{ account -> account.name == name }.count() == 1
+    fun hasCached(name: String): Boolean = cache.filter{ account -> account.name == name }.count() >= 1
 
     fun get(id: Int) = cache[id]
 

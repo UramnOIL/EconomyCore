@@ -7,6 +7,6 @@ interface IAccountDao {
     fun select(name: String): Account?
     fun set(account: Account)
     fun delete(account: Account): Boolean
-    fun new(name: String, money: Int): Account
+    fun create(name: String, money: Int): Account
     fun save()
 }
