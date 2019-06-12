@@ -5,8 +5,8 @@ import com.uramnoil.economycore.repository.cache.AccountCache
 import com.uramnoil.economycore.repository.dao.AccountMockDao
 import com.uramnoil.economycore.repository.dao.IAccountDao
 
-object AccountRepository: IAccountRepostirory {
-    override val dao: IAccountDao = AccountMockDao()
+class AccountRepository(db: Any): IAccountRepostirory {
+    override val dao: IAccountDao = AccountMockDao(db)
     val cache = AccountCache()
 
     override fun store(account: Account) {

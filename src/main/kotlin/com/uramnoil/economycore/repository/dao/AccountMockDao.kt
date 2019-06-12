@@ -3,8 +3,9 @@ package com.uramnoil.economycore.repository.dao
 import com.uramnoil.economycore.entity.Account
 import com.uramnoil.economycore.entity.AccountFactory
 
-class AccountMockDao: IAccountDao {
+class AccountMockDao(db: Any): IAccountDao {
     private val list = arrayListOf<Account>()
+
     private var id = 0
 
     override fun select(id: Int): Account? = list.getOrNull(id)
