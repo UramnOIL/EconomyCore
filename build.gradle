@@ -9,8 +9,13 @@ repositories {
     mavenCentral()
 }
 
+test {
+    useJUnitPlatform()
+}
+
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+    testCompile "org.junit.jupiter:junit-jupiter-engine:5.2.0"
 }
 
 compileKotlin {
