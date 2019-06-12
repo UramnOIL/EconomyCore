@@ -7,13 +7,13 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 
 class AccountRepostiroyTest {
-    val cRepo by lazy {
+    val aRepo by lazy {
         AccountRepository(AccountMockDao())
     }
 
     @Test
     fun testCreateAccount() {
-        val repo = cRepo
+        val repo = aRepo
 
         val sample = repo.new(name = "sample")
         assert(sample.name == "sample")
@@ -23,7 +23,7 @@ class AccountRepostiroyTest {
 
     @Test
     fun testDuplicateAccount() {
-        val repo = cRepo
+        val repo = aRepo
 
         repo.new("sample")
         assertThrows<AccountException> {
@@ -33,7 +33,7 @@ class AccountRepostiroyTest {
 
     @Test
     fun testStoreAccount() {
-        val repo = cRepo
+        val repo = aRepo
         val sample1 = repo.new(name = "sample")
         repo.store(sample1)
         val sample2 = repo.get("sample") ?: throw AccountException()
@@ -42,7 +42,7 @@ class AccountRepostiroyTest {
 
     @Test
     fun testAddMoney() {
-        val repo = cRepo
+        val repo = aRepo
         val sample1 = repo.new(name = "sample")
         sample1.money = 100
         val sample2 = repo.get("sample") ?: throw AccountException()
